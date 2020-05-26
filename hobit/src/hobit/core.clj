@@ -35,10 +35,18 @@
   "Expects a seq of maps that have a :name and :size"
   [asym-body-parts]
   (loop [remaining-asym-parts asym-body-parts
-         final-body-parts []]
+    final-body-parts []]
     (if (empty? remaining-asym-parts)
-      final-body-parts
-      (let [[part & remaining] remaining-asym-parts]
-        (recur remaining
-               (into final-body-parts
-                     (set [part (matching-part part)])))))))
+    final-body-parts
+    (let [[part & remaining] remaining-asym-parts]
+      (recur remaining
+        (into final-body-parts
+          (set [part (matching-part part)])))))))
+
+(defn better-symmetrize-body-parts
+  "Expects a seq of maps that have a :name and :size"
+  [asym-body-parts]
+  (reduce (fn [final-body-parts part]
+    (into final-body-parts (set [part (matching-part part)])))
+    []
+    asym-body-parts))
