@@ -4,7 +4,7 @@
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
-  (println "hey love!"))
+  (println "hey "))
 
 (def asym-hobbit-body-parts [{:name "head" :size 3}
                              {:name "left-eye" :size 1}
@@ -61,3 +61,33 @@
       (if (> accumulated-size target)
         part
         (recur remaining (+ accumulated-size (:size (first remaining))))))))
+
+
+; Ch-3 exercise 1
+(defn exercise
+  [name]
+  (println str "hey it's a happy day " name)   ;str
+  ( get [3 2 1 ] 0 ))                            ;vector                            
+
+
+(defn el   ;parameter list is mandatory in defn
+  []
+  ( nth '(3 2 1 ) 0 ))  ; list                                   
+    
+(defn ehm
+  []
+  (get {:a 0 :b 1} :b)) ;hash-map
+
+(defn ehs
+  []
+  (conj #{:a :b} :b)) ;hash-set
+
+; Ch-3 exercise 2
+(defn add
+  [n]
+  (+ 100 n))
+
+; Ch-3 ex 3
+(defn dec-maker
+  [dec-by]
+  #(- % dec-by))      ;(* 8 3) == #(* % 3)
